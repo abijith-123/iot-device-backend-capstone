@@ -38,4 +38,4 @@ Record one continuous screen capture with your microphone. Keep the GitHub branc
 
 ## Screenshot fallback
 
-If recording is unavailable, capture and annotate these six screenshots: architecture diagram; firmware payload; successful ingestion response; generated alerts; passing CI; branch/PR/commit evidence. Put them in `docs/walkthrough/` and link each image here with a one-sentence explanation.
+The completed annotated alternative is available at [`docs/walkthrough/README.md`](docs/walkthrough/README.md). It contains six ordered screenshots covering the initial failure, repository ownership, firmware, merged PR evidence, the Ready production deployment, and the working health endpoint.

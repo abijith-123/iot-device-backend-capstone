@@ -7,7 +7,7 @@ A portfolio-grade ESP32-to-cloud telemetry platform demonstrating device firmwar
 - ESP32/DHT22 firmware publishes JSON telemetry every five seconds.
 - MQTT ingestion subscribes to `iot/+/telemetry` with QoS 1.
 - Secured HTTP ingestion supports simulators, testing, and fallback delivery.
-- SQLite persistence provides a simple local and free-host deployment path.
+- SQLite supports local development; managed PostgreSQL provides durable Vercel storage.
 - Configurable temperature, humidity, and gas rules generate alerts immediately.
 - The REST API exposes filtered readings, alerts, and acknowledgement state.
 - Docker, Render blueprint, automated tests, and GitHub Actions make the service reproducible.
@@ -33,14 +33,14 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for component responsibilities and failur
 
 ## Tech stack
 
-ESP32/Arduino, WiFi, MQTT, JSON, Python 3.12, FastAPI, Pydantic, SQLAlchemy, SQLite, Docker, Render, Pytest, and GitHub Actions.
+ESP32/Arduino, WiFi, MQTT, JSON, Python 3.12, FastAPI, Pydantic, SQLAlchemy, SQLite/PostgreSQL, Docker, Vercel, Pytest, and GitHub Actions.
 
 ## Live links
 
 | Component | Link | Status |
 |---|---|---|
 | GitHub repository | https://github.com/abijith-123/iot-device-backend-capstone | Live |
-| Backend health | Add Render URL after deployment | Pending host credentials |
+| Backend health | Add Vercel URL after deployment | Pending host credentials |
 | Interactive API docs | Add `<backend-url>/docs` after deployment | Pending host credentials |
 | ESP32 simulator | Add Wokwi project URL after importing firmware | Pending Wokwi project |
 | Dashboard | Add Seif's deployed dashboard URL | Pending team integration |
@@ -73,16 +73,21 @@ docker compose up --build
 python -m pytest -q
 ```
 
-## Deploy on Render
+## Deploy on Vercel
 
-1. Fork or use this repository in Render.
-2. Choose **New > Blueprint** and select `render.yaml`.
-3. Confirm the generated `API_KEY` secret and persistent disk.
-4. Deploy, then verify `/health` and `/docs`.
-5. Set `MQTT_ENABLED=true` and broker credentials only when the broker is ready.
-6. Put the verified URLs in the table above and in both contribution documents.
+1. Import this GitHub repository at `vercel.com/new`.
+2. Keep the detected Python/FastAPI settings; `app.py` exports the application.
+3. Add a PostgreSQL integration from the Vercel Marketplace and connect it to the project.
+4. Set `DATABASE_URL` to the provider's pooled PostgreSQL connection string.
+5. Add a long random `API_KEY` and keep `MQTT_ENABLED=false` for the serverless API.
+6. Deploy, then verify `/health`, `/docs`, ingestion, readings, and alerts.
+7. Put the verified URLs in the table above and in both contribution documents.
 
-Never commit the API key or broker password. Render injects these at runtime.
+Never commit the API key or database password. Vercel injects them at runtime.
+
+### MQTT on Vercel
+
+Vercel runs the FastAPI app as an on-demand function, so it cannot maintain a permanent broker subscription. The deployed device path must either post directly to `POST /api/v1/telemetry` or use an MQTT broker rule/webhook that forwards messages to that endpoint. The local/container deployment can still enable the included MQTT worker with `MQTT_ENABLED=true`.
 
 ## Ownership
 

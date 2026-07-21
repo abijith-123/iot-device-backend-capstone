@@ -26,8 +26,8 @@ Record one continuous screen capture with your microphone. Keep the GitHub branc
 ## 2:30–3:15 — Reliability and deployment
 
 - Show the passing GitHub Actions workflow and `tests/test_api.py`.
-- Show `Dockerfile`, `render.yaml`, and the live `/health` response.
-- Explain environment-based secrets, the persistent disk, and why `/health` is public while telemetry is secured.
+- Show `app.py`, `pyproject.toml`, the connected PostgreSQL integration, and the live `/health` response.
+- Explain environment-based secrets, durable managed storage, and why `/health` is public while telemetry is secured.
 
 ## 3:15–4:15 — Evidence and team boundary
 
@@ -39,4 +39,3 @@ Record one continuous screen capture with your microphone. Keep the GitHub branc
 ## Screenshot fallback
 
 If recording is unavailable, capture and annotate these six screenshots: architecture diagram; firmware payload; successful ingestion response; generated alerts; passing CI; branch/PR/commit evidence. Put them in `docs/walkthrough/` and link each image here with a one-sentence explanation.
-

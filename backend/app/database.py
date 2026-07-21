@@ -1,3 +1,4 @@
+import os
 from collections.abc import Generator
 
 from sqlalchemy import create_engine
@@ -19,11 +20,18 @@ def _normalize_database_url(url: str) -> str:
     return url
 
 
+def _runtime_database_url(url: str) -> str:
+    """Keep the no-database Vercel fallback inside its writable temp directory."""
+    if os.getenv("VERCEL") and url == "sqlite:///./telemetry.db":
+        return "sqlite:////tmp/telemetry.db"
+    return url
+
+
 def _engine_options(url: str) -> dict:
     return {"connect_args": {"check_same_thread": False}} if url.startswith("sqlite") else {}
 
 
-database_url = _normalize_database_url(get_settings().database_url)
+database_url = _normalize_database_url(_runtime_database_url(get_settings().database_url))
 engine = create_engine(database_url, pool_pre_ping=True, **_engine_options(database_url))
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 

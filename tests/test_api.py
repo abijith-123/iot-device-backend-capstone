@@ -8,7 +8,7 @@ os.environ["MQTT_ENABLED"] = "false"
 
 from fastapi.testclient import TestClient
 
-from backend.app.database import Base, engine
+from backend.app.database import Base, _runtime_database_url, engine
 from backend.app.main import app
 
 
@@ -27,6 +27,12 @@ def test_health_is_public():
         response = client.get("/health")
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
+
+
+def test_vercel_sqlite_fallback_uses_writable_tmp(monkeypatch):
+    monkeypatch.setenv("VERCEL", "1")
+    assert _runtime_database_url("sqlite:///./telemetry.db") == "sqlite:////tmp/telemetry.db"
+    assert _runtime_database_url("postgresql://example/db") == "postgresql://example/db"
 
 
 def test_telemetry_requires_authentication():
@@ -63,4 +69,3 @@ def test_alert_can_be_acknowledged():
         response = client.patch(f"/api/v1/alerts/{alert_id}/acknowledge", headers=headers)
     assert response.status_code == 200
     assert response.json()["acknowledged"] is True
-

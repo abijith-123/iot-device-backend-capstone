@@ -18,6 +18,8 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - Neon production verification PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/6
 - Production verification branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/verify-neon-production
 - Durable production database: Neon PostgreSQL connected through Vercel
+- Live ESP32 simulation: https://wokwi.com/projects/470194701675629569
+- Final simulator and walkthrough PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/8
 
 ### Key commits
 
@@ -32,7 +34,9 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 
 I sent a threshold-breaching payload through the secured production endpoint. The API returned **201**, stored reading **#1**, and produced two critical alerts: `high_temperature` for `38.5°C > 35°C` and `high_gas` for `650 ppm > 500 ppm`. I then rotated the API credential, redeployed production, and queried the service again. The same reading and both alerts remained available, proving that the deployed API uses durable Neon PostgreSQL rather than temporary serverless storage.
 
-Seif's dashboard is treated as **ready for integration for planning purposes**, but I have not marked it deployed or end-to-end verified. That status requires Seif's live dashboard URL and his own commit/PR/walkthrough evidence.
+The Wokwi ESP32 project also compiled successfully, started, and connected to the Wokwi public IoT gateway.
+
+The team declares Seif's dashboard, analytics, and frontend authentication layer **complete**. Seif remains responsible for the live dashboard URL and his personal commit/PR/walkthrough evidence; this backend contribution document does not claim his implementation.
 
 ## Personal walkthrough
 
@@ -40,4 +44,4 @@ Use [WALKTHROUGH.md](WALKTHROUGH.md) for a 3–5 minute recording plan and the e
 
 ## Honest collaboration statement
 
-The firmware, backend ingestion path, data model, API implementation, alert rules, backend tests, and Vercel deployment materials in this repository are my contribution. Seif's contribution is the dashboard, analytics UI, frontend authentication/integration, and presentation of the data returned by this API. We collaborate at the boundary: we agree on field names, authentication headers, filtering behavior, alert shape, and deployed URLs; we also test the final device-to-dashboard chain together. Any debugging advice or integration adjustments across that boundary are shared help, but I do not claim Seif's frontend implementation and he should not claim my firmware or backend engine.
+The firmware, backend ingestion path, data model, API implementation, alert rules, backend tests, and Vercel deployment materials in this repository are my contribution. Seif completed the dashboard, analytics UI, frontend authentication/integration, and presentation of the data returned by this API, according to the team's final declaration. We collaborate at the boundary: we agree on field names, authentication headers, filtering behavior, alert shape, and deployed URLs; we also test the final device-to-dashboard chain together. Any debugging advice or integration adjustments across that boundary are shared help, but I do not claim Seif's frontend implementation and he should not claim my firmware or backend engine.

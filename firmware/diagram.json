@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "author": "Abijith Biju",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -85,
+      "left": 250,
+      "attrs": {
+        "temperature": "38.5",
+        "humidity": "55"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "gas",
+      "top": 110,
+      "left": 255,
+      "attrs": {
+        "value": "0.65"
+      }
+    }
+  ],
+  "connections": [
+    [ "esp:3V3", "dht:VCC", "red", [] ],
+    [ "esp:GND.1", "dht:GND", "black", [] ],
+    [ "esp:15", "dht:SDA", "green", [] ],
+    [ "esp:3V3", "gas:VCC", "red", [] ],
+    [ "esp:GND.1", "gas:GND", "black", [] ],
+    [ "esp:34", "gas:SIG", "orange", [] ]
+  ],
+  "dependencies": {}
+}

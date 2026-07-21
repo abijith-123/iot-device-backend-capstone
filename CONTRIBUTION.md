@@ -9,6 +9,11 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - Repository: https://github.com/abijith-123/iot-device-backend-capstone
 - Branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/device-backend-capstone
 - Pull request: https://github.com/abijith-123/iot-device-backend-capstone/pull/1
+- Live backend health: https://iot-device-backend-capstone.vercel.app/health
+- Live interactive API documentation: https://iot-device-backend-capstone.vercel.app/docs
+- Vercel adaptation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/2
+- Vercel dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
+- Vercel runtime-storage fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/4
 
 ### Key commits
 
@@ -17,6 +22,7 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - [`da85e57`](https://github.com/abijith-123/iot-device-backend-capstone/commit/da85e57a5fee8f799b110ac137244162fe7fa349) — added ESP32 telemetry firmware plus the consolidated device, MQTT, API, and alert contract.
 - [`0c604a8`](https://github.com/abijith-123/iot-device-backend-capstone/commit/0c604a8736917ff23b29d2435fc9b699874a2163) — added Docker/Render deployment, persistent storage configuration, automated API tests, and GitHub Actions CI.
 - [`a43b24e`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a43b24e66e88f2f2826434fc95cc86fe7e466e8d) — documented backend architecture, completion criteria, ownership boundaries, and the personal walkthrough.
+- [`636f589`](https://github.com/abijith-123/iot-device-backend-capstone/commit/636f5890f995c57f6a47be73501df6f310ba6dc5) — adapted the FastAPI entry point, database configuration, and deployment documentation for Vercel and managed PostgreSQL.
 
 ## Personal walkthrough
 

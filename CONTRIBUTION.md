@@ -14,6 +14,9 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - Vercel adaptation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/2
 - Vercel dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
 - Vercel runtime-storage fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/4
+- Verified Vercel deployment evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/5
+- Production verification branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/verify-neon-production
+- Durable production database: Neon PostgreSQL connected through Vercel
 
 ### Key commits
 
@@ -23,6 +26,12 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - [`0c604a8`](https://github.com/abijith-123/iot-device-backend-capstone/commit/0c604a8736917ff23b29d2435fc9b699874a2163) — added Docker/Render deployment, persistent storage configuration, automated API tests, and GitHub Actions CI.
 - [`a43b24e`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a43b24e66e88f2f2826434fc95cc86fe7e466e8d) — documented backend architecture, completion criteria, ownership boundaries, and the personal walkthrough.
 - [`636f589`](https://github.com/abijith-123/iot-device-backend-capstone/commit/636f5890f995c57f6a47be73501df6f310ba6dc5) — adapted the FastAPI entry point, database configuration, and deployment documentation for Vercel and managed PostgreSQL.
+
+## Verified production result — 22 July 2026
+
+I sent a threshold-breaching payload through the secured production endpoint. The API returned **201**, stored reading **#1**, and produced two critical alerts: `high_temperature` for `38.5°C > 35°C` and `high_gas` for `650 ppm > 500 ppm`. I then rotated the API credential, redeployed production, and queried the service again. The same reading and both alerts remained available, proving that the deployed API uses durable Neon PostgreSQL rather than temporary serverless storage.
+
+Seif's dashboard is treated as **ready for integration for planning purposes**, but I have not marked it deployed or end-to-end verified. That status requires Seif's live dashboard URL and his own commit/PR/walkthrough evidence.
 
 ## Personal walkthrough
 

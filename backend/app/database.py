@@ -10,11 +10,21 @@ class Base(DeclarativeBase):
     pass
 
 
+def _normalize_database_url(url: str) -> str:
+    """Use psycopg 3 when a provider supplies a generic Postgres URL."""
+    if url.startswith("postgres://"):
+        return url.replace("postgres://", "postgresql+psycopg://", 1)
+    if url.startswith("postgresql://"):
+        return url.replace("postgresql://", "postgresql+psycopg://", 1)
+    return url
+
+
 def _engine_options(url: str) -> dict:
     return {"connect_args": {"check_same_thread": False}} if url.startswith("sqlite") else {}
 
 
-engine = create_engine(get_settings().database_url, **_engine_options(get_settings().database_url))
+database_url = _normalize_database_url(get_settings().database_url)
+engine = create_engine(database_url, pool_pre_ping=True, **_engine_options(database_url))
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
 
@@ -24,4 +34,3 @@ def get_db() -> Generator[Session, None, None]:
         yield db
     finally:
         db.close()
-

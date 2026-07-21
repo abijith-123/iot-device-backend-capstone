@@ -19,7 +19,7 @@
 | HTTP ingestion | Authenticated fallback/test ingestion | Uses the same schema and service as MQTT |
 | Ingestion service | Atomic persistence and alert evaluation | Single source of write behavior |
 | Alert engine | Configurable threshold comparison | Produces durable alerts rather than UI-only warnings |
-| SQLite/SQLAlchemy | Readings and alerts | Can be replaced by PostgreSQL using `DATABASE_URL` |
+| SQLite/PostgreSQL via SQLAlchemy | Readings and alerts | SQLite locally; managed PostgreSQL on Vercel |
 | REST API | Secured queries and acknowledgement | Contract consumed by dashboard |
 
 ## Data model
@@ -46,10 +46,9 @@ For a larger system, replace a shared API key with per-device credentials/JWTs, 
 - QoS 1 reduces message loss but may redeliver; production should add a message ID for deduplication.
 - Malformed MQTT messages are logged and rejected without stopping the worker.
 - Reading and alert creation share one database transaction.
-- A persistent Render disk prevents SQLite data loss across service restarts.
+- Managed PostgreSQL prevents data loss across stateless Vercel function invocations.
 - `/health` provides an external deployment check.
 
 ## Deployment boundary
 
-The Docker image runs FastAPI and its optional MQTT worker as one small free-tier service. This is appropriate for a capstone. At scale, split MQTT consumption into worker replicas, use a queue, and move to PostgreSQL so API and ingestion can scale independently.
-
+Vercel runs FastAPI as an on-demand function backed by managed PostgreSQL. Because a serverless function is not a permanent process, production MQTT delivery uses a broker webhook/rule or direct authenticated HTTP from the ESP32. The included Docker deployment remains useful locally and can run the continuous MQTT worker. At scale, use a dedicated MQTT consumer service or broker rule engine and keep the API/database independently scalable.

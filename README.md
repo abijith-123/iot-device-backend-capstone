@@ -21,7 +21,7 @@ flowchart LR
     SIM["Wokwi / HTTP client"] -->|"POST + X-API-Key"| API["Secured FastAPI REST API"]
     ING --> SVC["Validation + ingestion service"]
     API --> SVC
-    SVC --> DB[("Neon PostgreSQL (production) / SQLite (local)") ]
+    SVC --> DB[("Neon PostgreSQL (production) / SQLite (local)")]
     SVC --> RULES["Threshold alert engine"]
     RULES --> DB
     DB --> API

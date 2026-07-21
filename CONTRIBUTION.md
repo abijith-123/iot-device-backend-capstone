@@ -15,6 +15,7 @@ I owned the **device and backend chain: ESP32 firmware â†’ MQTT/HTTP ingestion â
 - Vercel dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
 - Vercel runtime-storage fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/4
 - Verified Vercel deployment evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/5
+- Neon production verification PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/6
 - Production verification branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/verify-neon-production
 - Durable production database: Neon PostgreSQL connected through Vercel
 

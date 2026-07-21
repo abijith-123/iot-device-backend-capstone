@@ -21,7 +21,7 @@ flowchart LR
     SIM["Wokwi / HTTP client"] -->|"POST + X-API-Key"| API["Secured FastAPI REST API"]
     ING --> SVC["Validation + ingestion service"]
     API --> SVC
-    SVC --> DB[("SQLite telemetry database")]
+    SVC --> DB[("Neon PostgreSQL (production) / SQLite (local)") ]
     SVC --> RULES["Threshold alert engine"]
     RULES --> DB
     DB --> API
@@ -42,11 +42,20 @@ ESP32/Arduino, WiFi, MQTT, JSON, Python 3.12, FastAPI, Pydantic, SQLAlchemy, SQL
 | GitHub repository | https://github.com/abijith-123/iot-device-backend-capstone | Live |
 | Backend health | https://iot-device-backend-capstone.vercel.app/health | Live and verified |
 | Interactive API docs | https://iot-device-backend-capstone.vercel.app/docs | Live and verified |
-| Durable database | Neon PostgreSQL through Vercel Marketplace | Pending user approval of Neon terms |
+| Durable database | Neon PostgreSQL through Vercel Marketplace | Live and verified across redeployment |
 | ESP32 simulator | Add Wokwi project URL after importing firmware | Pending Wokwi project |
-| Dashboard | Add Seif's deployed dashboard URL | Pending team integration |
+| Dashboard | Add Seif's deployed dashboard URL | Assumed ready for integration; live URL not yet verified |
 
-Only links that were opened and verified are marked live. Device, dashboard, and durable-database items remain pending until their external setup is completed.
+Only links that were opened and verified are marked live. The backend and durable database are verified. The device simulator and Seif's dashboard remain pending until their external URLs and final integration evidence are supplied.
+
+## Production verification — 22 July 2026
+
+- Vercel production deployment reached **Ready** with Neon `DATABASE_URL` connected for Production and Preview.
+- `POST /api/v1/telemetry` returned **201** for device `esp32-vercel-e2e`.
+- Reading **#1** was stored with temperature `38.5°C`, humidity `55%`, and gas `650 ppm`.
+- The alert engine created **high_temperature** and **high_gas** critical alerts at thresholds `35°C` and `500 ppm`.
+- After a fresh production redeployment, `GET /api/v1/readings` and `GET /api/v1/alerts` returned the same reading and alerts, proving durable PostgreSQL persistence.
+- The API credential was rotated after testing and remains stored only in Vercel environment variables.
 
 ## Run locally
 

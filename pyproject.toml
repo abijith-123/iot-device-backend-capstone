@@ -2,7 +2,13 @@
 name = "iot-device-backend-capstone"
 version = "1.0.0"
 requires-python = ">=3.12,<3.15"
+dependencies = [
+    "fastapi==0.116.1",
+    "SQLAlchemy==2.0.41",
+    "pydantic-settings==2.10.1",
+    "paho-mqtt==2.1.0",
+    "psycopg[binary]==3.2.9",
+]
 
 [tool.vercel]
 entrypoint = "app:app"
-

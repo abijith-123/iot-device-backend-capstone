@@ -40,12 +40,13 @@ ESP32/Arduino, WiFi, MQTT, JSON, Python 3.12, FastAPI, Pydantic, SQLAlchemy, SQL
 | Component | Link | Status |
 |---|---|---|
 | GitHub repository | https://github.com/abijith-123/iot-device-backend-capstone | Live |
-| Backend health | Add Vercel URL after deployment | Pending host credentials |
-| Interactive API docs | Add `<backend-url>/docs` after deployment | Pending host credentials |
+| Backend health | https://iot-device-backend-capstone.vercel.app/health | Live and verified |
+| Interactive API docs | https://iot-device-backend-capstone.vercel.app/docs | Live and verified |
+| Durable database | Neon PostgreSQL through Vercel Marketplace | Pending user approval of Neon terms |
 | ESP32 simulator | Add Wokwi project URL after importing firmware | Pending Wokwi project |
 | Dashboard | Add Seif's deployed dashboard URL | Pending team integration |
 
-Links are intentionally marked pending instead of presenting unverified URLs as live deployments.
+Only links that were opened and verified are marked live. Device, dashboard, and durable-database items remain pending until their external setup is completed.
 
 ## Run locally
 

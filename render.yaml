@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: iot-device-backend-capstone
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: API_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:////data/telemetry.db
+      - key: MQTT_ENABLED
+        value: "false"
+    disk:
+      name: telemetry-data
+      mountPath: /data
+      sizeGB: 1
+

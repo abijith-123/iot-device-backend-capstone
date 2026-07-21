@@ -1,5 +1,9 @@
 # Wokwi ESP32 Simulation
 
+**Live project:** https://wokwi.com/projects/470194701675629569
+
+Verified on 22 July 2026: the sketch compiled, the simulator started, and the ESP32 connected to `Wokwi-GUEST` through the public IoT gateway.
+
 This folder contains everything needed to reproduce the device simulation:
 
 - `esp32_telemetry.ino` — firmware that samples the DHT22 and gas input and publishes JSON telemetry.

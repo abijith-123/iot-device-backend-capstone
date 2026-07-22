@@ -38,4 +38,4 @@ On 22 July 2026, the production API accepted threshold-breaching telemetry with 
 
 Abijith Biju owns the ESP32 firmware, MQTT/HTTP ingestion, persistence, secured backend API, rule-based alert engine, backend testing, and Vercel deployment materials. Seif Taha owns the dashboard, analytics presentation, frontend authentication/integration, and frontend deployment. Shared work is limited to the JSON/API boundary, deployed integration contract, and end-to-end verification.
 
-This submission contains no placeholder links, required edits, or committed secrets.
+This submission contains final links, finished documents, verified evidence, and no committed secrets.

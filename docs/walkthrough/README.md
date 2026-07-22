@@ -22,9 +22,9 @@ This completed evidence set is the submitted screenshot alternative to a 3–5 m
 
 ## 4. Running Wokwi ESP32 simulation
 
-![Running Wokwi ESP32 simulator](08-wokwi-running.jpg)
+![Running Wokwi ESP32 simulator](08-wokwi-running.png)
 
-**Annotation:** The public Wokwi project is actively running—the restart, stop, and pause controls are visible with the ESP32 circuit. The simulator configuration keeps the Serial Monitor open, and the firmware prints each telemetry JSON payload locally before attempting MQTT delivery, so evidence remains observable even when the public broker is temporarily unavailable.
+**Annotation:** The public Wokwi project is actively running—the elapsed timer and restart, stop, and pause controls are visible beside the wired ESP32, DHT22, and simulated gas input. The `diagram.json` panel also records the always-visible Serial Monitor configuration used for telemetry evidence.
 
 ## 5. Merged production-verification pull request
 

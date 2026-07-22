@@ -38,6 +38,4 @@ This evidence set is the screenshot alternative to a 3–5 minute recording. Fol
 
 **Annotation:** The final `/health` response reports `status: ok` for `iot-device-backend`, proving that the production function is reachable independently of the authenticated telemetry routes.
 
-## What to say at the handoff
-
-“I owned ESP32 firmware through ingestion, persistence, the secured API, alert generation, testing, and backend deployment. Seif completed the dashboard, analytics, and frontend authentication layer. We collaborated on the JSON/API boundary and final integration contract.”
+I owned ESP32 firmware through ingestion, persistence, the secured API, alert generation, testing, and backend deployment. Seif completed the dashboard, analytics, and frontend authentication layer. We collaborated on the JSON/API boundary and final integration contract.

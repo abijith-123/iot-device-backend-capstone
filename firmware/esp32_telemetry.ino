@@ -25,13 +25,10 @@ void connectWifi() {
   }
 }
 
-void connectMqtt() {
-  while (!mqtt.connected()) {
-    String clientId = String(DEVICE_ID) + "-" + String(random(0xffff), HEX);
-    if (!mqtt.connect(clientId.c_str())) {
-      delay(1000);
-    }
-  }
+bool connectMqtt() {
+  if (mqtt.connected()) return true;
+  String clientId = String(DEVICE_ID) + "-" + String(random(0xffff), HEX);
+  return mqtt.connect(clientId.c_str());
 }
 
 void setup() {
@@ -43,8 +40,8 @@ void setup() {
 
 void loop() {
   if (WiFi.status() != WL_CONNECTED) connectWifi();
-  if (!mqtt.connected()) connectMqtt();
-  mqtt.loop();
+  bool mqttReady = mqtt.connected();
+  if (mqttReady) mqtt.loop();
 
   if (millis() - lastPublish >= PUBLISH_INTERVAL_MS) {
     lastPublish = millis();
@@ -56,8 +53,11 @@ void loop() {
       "{\"device_id\":\"%s\",\"temperature_c\":%.2f,\"humidity_pct\":%.2f,\"gas_ppm\":%.2f}",
       DEVICE_ID, sample.temperature, sample.humidity, gasPpm);
 
-    if (mqtt.publish(MQTT_TOPIC, payload, true)) {
-      Serial.println(payload);
+    Serial.println(payload);
+    if (mqttReady) {
+      mqtt.publish(MQTT_TOPIC, payload, true);
+    } else {
+      connectMqtt();
     }
   }
 }

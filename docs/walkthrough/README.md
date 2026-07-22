@@ -20,25 +20,31 @@ This completed evidence set is the submitted screenshot alternative to a 3–5 m
 
 **Annotation:** The firmware samples a DHT22 and analog gas input every five seconds, reconnects Wi-Fi/MQTT when required, and publishes the agreed JSON fields on `iot/esp32-capstone-01/telemetry`. The live simulator is available at [Wokwi project 470194701675629569](https://wokwi.com/projects/470194701675629569).
 
-## 4. Merged production-verification pull request
+## 4. Running Wokwi ESP32 simulation
+
+![Running Wokwi ESP32 simulator](08-wokwi-running.jpg)
+
+**Annotation:** The public Wokwi project is actively running—the restart, stop, and pause controls are visible with the ESP32 circuit. The simulator configuration keeps the Serial Monitor open, and the firmware prints each telemetry JSON payload locally before attempting MQTT delivery, so evidence remains observable even when the public broker is temporarily unavailable.
+
+## 5. Merged production-verification pull request
 
 ![Merged Neon verification pull request](04-pr-evidence.png)
 
 **Annotation:** PR #6 records the production telemetry → persistence → alert test. It merged two commits into `main` after CI, documenting a `201` ingestion result, stored reading, two critical alerts, and durable data across redeployment.
 
-## 5. Ready Vercel production deployment
+## 6. Ready Vercel production deployment
 
 ![Vercel production deployment](05-vercel-production.png)
 
 **Annotation:** Vercel shows the `main` deployment as **Ready**, **Production**, and **Current**, with the public project domain assigned. Neon `DATABASE_URL` is connected through Vercel environment variables.
 
-## 6. Public health check after the fixes
+## 7. Public health check after the fixes
 
 ![Live health endpoint](06-health.png)
 
 **Annotation:** The final `/health` response reports `status: ok` for `iot-device-backend`, proving that the production function is reachable independently of the authenticated telemetry routes.
 
-## 7. Passing backend continuous integration
+## 8. Passing backend continuous integration
 
 ![Successful Backend CI workflow](09-ci-success.jpg)
 

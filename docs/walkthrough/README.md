@@ -38,4 +38,10 @@ This evidence set is the screenshot alternative to a 3–5 minute recording. Fol
 
 **Annotation:** The final `/health` response reports `status: ok` for `iot-device-backend`, proving that the production function is reachable independently of the authenticated telemetry routes.
 
+## 7. Passing backend continuous integration
+
+![Successful Backend CI workflow](09-ci-success.jpg)
+
+**Annotation:** GitHub Actions run #47 completed with **Success**. The backend test job passed in 20 seconds before the final evidence pull request was merged, providing an independent, repeatable check of the submitted code.
+
 I owned ESP32 firmware through ingestion, persistence, the secured API, alert generation, testing, and backend deployment. Seif completed the dashboard, analytics, and frontend authentication layer. We collaborated on the JSON/API boundary and final integration contract.

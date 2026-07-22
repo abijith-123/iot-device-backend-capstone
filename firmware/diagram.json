@@ -31,12 +31,46 @@
     }
   ],
   "connections": [
-    [ "esp:3V3", "dht:VCC", "red", [] ],
-    [ "esp:GND.1", "dht:GND", "black", [] ],
-    [ "esp:15", "dht:SDA", "green", [] ],
-    [ "esp:3V3", "gas:VCC", "red", [] ],
-    [ "esp:GND.1", "gas:GND", "black", [] ],
-    [ "esp:34", "gas:SIG", "orange", [] ]
+    [
+      "esp:3V3",
+      "dht:VCC",
+      "red",
+      []
+    ],
+    [
+      "esp:GND.1",
+      "dht:GND",
+      "black",
+      []
+    ],
+    [
+      "esp:15",
+      "dht:SDA",
+      "green",
+      []
+    ],
+    [
+      "esp:3V3",
+      "gas:VCC",
+      "red",
+      []
+    ],
+    [
+      "esp:GND.1",
+      "gas:GND",
+      "black",
+      []
+    ],
+    [
+      "esp:34",
+      "gas:SIG",
+      "orange",
+      []
+    ]
   ],
-  "dependencies": {}
+  "dependencies": {},
+  "serialMonitor": {
+    "collapse": false,
+    "display": "always"
+  }
 }

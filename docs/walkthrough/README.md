@@ -1,6 +1,6 @@
 # Annotated Individual Walkthrough — Abijith Biju
 
-This evidence set is the screenshot alternative to a 3–5 minute recording. Follow the images in order while explaining the device-to-backend contribution.
+This completed evidence set is the submitted screenshot alternative to a 3–5 minute recording. The annotations document the device-to-backend contribution in assessment order.
 
 ## 1. Failure discovered before the deployment fix
 
@@ -18,7 +18,7 @@ This evidence set is the screenshot alternative to a 3–5 minute recording. Fol
 
 ![ESP32 firmware source](02-firmware.png)
 
-**Annotation:** The firmware samples a DHT22 and analog gas input every five seconds, reconnects Wi-Fi/MQTT when required, and publishes the agreed JSON fields on `iot/esp32-capstone-01/telemetry`. The Wokwi circuit and required libraries live beside the sketch.
+**Annotation:** The firmware samples a DHT22 and analog gas input every five seconds, reconnects Wi-Fi/MQTT when required, and publishes the agreed JSON fields on `iot/esp32-capstone-01/telemetry`. The live simulator is available at [Wokwi project 470194701675629569](https://wokwi.com/projects/470194701675629569).
 
 ## 4. Merged production-verification pull request
 
@@ -43,5 +43,7 @@ This evidence set is the screenshot alternative to a 3–5 minute recording. Fol
 ![Successful Backend CI workflow](09-ci-success.jpg)
 
 **Annotation:** GitHub Actions run #47 completed with **Success**. The backend test job passed in 20 seconds before the final evidence pull request was merged, providing an independent, repeatable check of the submitted code.
+
+## Contribution boundary
 
 I owned ESP32 firmware through ingestion, persistence, the secured API, alert generation, testing, and backend deployment. Seif completed the dashboard, analytics, and frontend authentication layer. We collaborated on the JSON/API boundary and final integration contract.

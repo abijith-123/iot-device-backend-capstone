@@ -20,6 +20,7 @@ I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion �
 - Durable production database: Neon PostgreSQL connected through Vercel
 - Live ESP32 simulation: https://wokwi.com/projects/470194701675629569
 - Final simulator and walkthrough PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/8
+- Final CI screenshot evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/9
 
 ### Key commits
 
@@ -40,7 +41,9 @@ The team declares Seif's dashboard, analytics, and frontend authentication layer
 
 ## Personal walkthrough
 
-Use [WALKTHROUGH.md](WALKTHROUGH.md) for a 3–5 minute recording plan and the exact evidence to show. The walkthrough demonstrates the firmware payload, MQTT/HTTP ingestion, persisted reading, generated alerts, acknowledgement, tests, and the handoff to Seif's dashboard contract.
+The completed [annotated screenshot walkthrough](docs/walkthrough/README.md) is the submitted alternative to a 3–5 minute recording. It demonstrates the firmware contract, production ingestion and persistence evidence, generated alerts, deployment health, passing CI, and the handoff to Seif's dashboard contract.
+
+The complete hand-in is indexed in [SUBMISSION.md](SUBMISSION.md).
 
 ## Honest collaboration statement
 

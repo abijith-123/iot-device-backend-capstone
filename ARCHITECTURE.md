@@ -35,7 +35,7 @@ Server receipt time is authoritative because device clocks may drift. A device `
 - Key comparison uses constant-time comparison.
 - Secrets come from environment variables and `.env` is ignored.
 - Pydantic rejects impossible ranges, invalid identifiers, and naive timestamps.
-- Render terminates TLS; production clients must use HTTPS.
+- Vercel's managed edge terminates TLS; production clients use HTTPS.
 - The public health endpoint exposes only service state, not telemetry.
 
 For a larger system, replace a shared API key with per-device credentials/JWTs, rotate keys, enforce broker TLS, use topic ACLs, and store data in managed PostgreSQL.

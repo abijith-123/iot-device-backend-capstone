@@ -46,7 +46,19 @@ ESP32/Arduino, WiFi, MQTT, JSON, Python 3.12, FastAPI, Pydantic, SQLAlchemy, SQL
 | ESP32 simulator | https://wokwi.com/projects/470194701675629569 | Live; compiled and running |
 | Dashboard | Seif's dashboard deliverable | Complete by team declaration; link maintained in Seif's submission |
 
-The backend and durable database were independently verified. Seif's dashboard layer is recorded as complete by the team's declaration, with its personal links and evidence owned by Seif's submission. The Wokwi simulator is live and was verified to compile, start, and connect to `Wokwi-GUEST`.
+The backend, durable database, and Wokwi simulator were independently verified. The dashboard/analytics layer is complete under the team's final declaration and is evidenced in Seif's individual submission.
+
+## Submission package
+
+This repository is ready for assessment. The complete hand-in is indexed in [SUBMISSION.md](SUBMISSION.md), with direct links to:
+
+- [individual learning note](CAPSTONE.md)
+- [backend architecture](ARCHITECTURE.md)
+- [consolidated MQTT/API/alert contract](PROTOCOL.md)
+- [Abijith's contribution evidence](CONTRIBUTION.md)
+- [annotated screenshot walkthrough](docs/walkthrough/README.md)
+
+No credentials are included in the repository; production secrets remain in Vercel environment variables.
 
 ## Production verification — 22 July 2026
 
@@ -92,8 +104,6 @@ python -m pytest -q
 4. Set `DATABASE_URL` to the provider's pooled PostgreSQL connection string.
 5. Add a long random `API_KEY` and keep `MQTT_ENABLED=false` for the serverless API.
 6. Deploy, then verify `/health`, `/docs`, ingestion, readings, and alerts.
-7. Put the verified URLs in the table above and in both contribution documents.
-
 Never commit the API key or database password. Vercel injects them at runtime.
 
 ### MQTT on Vercel

@@ -1,50 +1,92 @@
-# Individual Contribution — Abijith Biju
+# Individual Contribution Showcase — Abijith Biju
 
-## Layer owned
+## Layer I Owned
 
-I owned the **device and backend chain: ESP32 firmware → MQTT/HTTP ingestion → telemetry persistence → secured API → rule-based alerts**. My boundary ends at the documented REST contract. Seif Taha owns the dashboard, analytics presentation, frontend authentication/integration, and dashboard deployment.
+I owned the complete **device-to-backend data chain**:
+
+**ESP32 firmware → MQTT/HTTP ingestion → validation → database persistence → secured REST API → automatic alert generation**
+
+My responsibility was to collect sensor values, transfer them to the backend, validate and store them, check for dangerous readings, and make the results available through authenticated API endpoints. My contribution ends at the documented API contract. The external dashboard and frontend implementation are outside the work claimed here.
+
+## What I Personally Developed
+
+### ESP32 Firmware
+
+I developed the ESP32 firmware used to collect temperature, humidity, and simulated gas readings. The firmware connects to Wi-Fi, reads the DHT22 and gas input, creates a JSON telemetry message, publishes every five seconds, uses the topic `iot/esp32-capstone-01/telemetry`, and prints each payload to the Serial Monitor for visible testing.
+
+### Telemetry Ingestion
+
+I created two supported ingestion paths. The MQTT worker receives IoT messages, while the authenticated HTTP endpoint supports production delivery, testing, broker webhooks, and direct device requests. Both paths use the same validation and storage service so that the backend behaves consistently.
+
+### Validation and Security
+
+I used Pydantic schemas to reject invalid device IDs, impossible sensor ranges, malformed JSON, and unsuitable timestamps. All `/api/v1/*` endpoints are protected using an `X-API-Key` header. The production key is stored in Vercel environment variables and is not committed to GitHub.
+
+### Database and Persistence
+
+I created the telemetry and alert database models using SQLAlchemy. SQLite is used locally and during testing, while Neon PostgreSQL provides durable storage for the deployed Vercel backend. A reading and its related alerts are committed through the same ingestion process.
+
+### Alert Engine
+
+I developed configurable rules for high temperature, high humidity, and high gas readings. The default thresholds are 35°C, 80% humidity, and 500 ppm gas. One reading can generate multiple alerts, and each alert keeps its rule, severity, value, threshold, message, time, and acknowledgement status.
+
+### Backend API
+
+I implemented:
+
+- `GET /health`
+- `POST /api/v1/telemetry`
+- `GET /api/v1/readings`
+- `GET /api/v1/alerts`
+- `PATCH /api/v1/alerts/{alert_id}/acknowledge`
+
+### Deployment, Testing, and Documentation
+
+I adapted the backend for Vercel, connected Neon PostgreSQL, corrected dependency and serverless-storage problems, added Pytest tests, added GitHub Actions CI, maintained Docker/local setup files, and completed the architecture, protocol, contribution, and walkthrough documentation.
 
 ## Evidence
 
 - Repository: https://github.com/abijith-123/iot-device-backend-capstone
-- Branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/device-backend-capstone
-- Pull request: https://github.com/abijith-123/iot-device-backend-capstone/pull/1
-- Live backend health: https://iot-device-backend-capstone.vercel.app/health
-- Live interactive API documentation: https://iot-device-backend-capstone.vercel.app/docs
+- Main branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/device-backend-capstone
+- Main implementation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/1
 - Vercel adaptation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/2
-- Vercel dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
-- Vercel runtime-storage fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/4
-- Verified Vercel deployment evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/5
-- Neon production verification PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/6
-- Production verification branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/verify-neon-production
-- Durable production database: Neon PostgreSQL connected through Vercel
-- Live ESP32 simulation: https://wokwi.com/projects/470194701675629569
-- Final simulator and walkthrough PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/8
-- Final CI screenshot evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/9
+- Dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
+- Runtime-storage fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/4
+- Deployment evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/5
+- Neon verification PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/6
+- Simulator and walkthrough PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/8
+- Backend CI evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/9
+- Live health endpoint: https://iot-device-backend-capstone.vercel.app/health
+- Live API docs: https://iot-device-backend-capstone.vercel.app/docs
+- Live Wokwi simulation: https://wokwi.com/projects/470194701675629569
 
-### Key commits
+## Six Key Commits
 
-- [`a19649b`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a19649bdba407ef041899f7638e8f1d6bbc1b533) — built the secured telemetry service foundation, configuration, validation schemas, database model, and reproducible project setup.
-- [`fc50510`](https://github.com/abijith-123/iot-device-backend-capstone/commit/fc5051041017fe6643dad85ee8919cac703c248f) — implemented shared HTTP/MQTT ingestion, authenticated API routes, persistence, and configurable multi-rule alerts.
-- [`da85e57`](https://github.com/abijith-123/iot-device-backend-capstone/commit/da85e57a5fee8f799b110ac137244162fe7fa349) — added ESP32 telemetry firmware plus the consolidated device, MQTT, API, and alert contract.
-- [`0c604a8`](https://github.com/abijith-123/iot-device-backend-capstone/commit/0c604a8736917ff23b29d2435fc9b699874a2163) — added Docker/Render deployment, persistent storage configuration, automated API tests, and GitHub Actions CI.
-- [`a43b24e`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a43b24e66e88f2f2826434fc95cc86fe7e466e8d) — documented backend architecture, completion criteria, ownership boundaries, and the personal walkthrough.
-- [`636f589`](https://github.com/abijith-123/iot-device-backend-capstone/commit/636f5890f995c57f6a47be73501df6f310ba6dc5) — adapted the FastAPI entry point, database configuration, and deployment documentation for Vercel and managed PostgreSQL.
+1. [`a19649b`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a19649bdba407ef041899f7638e8f1d6bbc1b533) — created the secured backend foundation, configuration, validation schemas, database models, and reproducible setup.
+2. [`fc50510`](https://github.com/abijith-123/iot-device-backend-capstone/commit/fc5051041017fe6643dad85ee8919cac703c248f) — implemented shared HTTP/MQTT ingestion, authenticated API routes, persistence, and configurable alert rules.
+3. [`da85e57`](https://github.com/abijith-123/iot-device-backend-capstone/commit/da85e57a5fee8f799b110ac137244162fe7fa349) — added ESP32 telemetry firmware and the consolidated device, MQTT, API, and alert contract.
+4. [`0c604a8`](https://github.com/abijith-123/iot-device-backend-capstone/commit/0c604a8736917ff23b29d2435fc9b699874a2163) — added deployment materials, persistent storage configuration, API tests, and GitHub Actions CI.
+5. [`a43b24e`](https://github.com/abijith-123/iot-device-backend-capstone/commit/a43b24e66e88f2f2826434fc95cc86fe7e466e8d) — documented the architecture, completion criteria, ownership boundary, and personal walkthrough.
+6. [`636f589`](https://github.com/abijith-123/iot-device-backend-capstone/commit/636f5890f995c57f6a47be73501df6f310ba6dc5) — adapted FastAPI, dependencies, and database configuration for Vercel and managed PostgreSQL.
 
-## Verified production result — 22 July 2026
+## Verified Production Result — 22 July 2026
 
-I sent a threshold-breaching payload through the secured production endpoint. The API returned **201**, stored reading **#1**, and produced two critical alerts: `high_temperature` for `38.5°C > 35°C` and `high_gas` for `650 ppm > 500 ppm`. I then rotated the API credential, redeployed production, and queried the service again. The same reading and both alerts remained available, proving that the deployed API uses durable Neon PostgreSQL rather than temporary serverless storage.
+I submitted a production telemetry payload containing 38.5°C temperature, 55% humidity, and 650 ppm gas. The secured API returned HTTP `201`, stored reading number 1, and generated two critical alerts: `high_temperature` and `high_gas`.
 
-The Wokwi ESP32 project also compiled successfully, started, and connected to the Wokwi public IoT gateway.
+I then redeployed the backend and queried the data again. The same reading and both alerts remained available, proving that the application used durable Neon PostgreSQL storage rather than temporary serverless storage. The API credential was rotated after testing and remained stored only in the deployment environment.
 
-The team declares Seif's dashboard, analytics, and frontend authentication layer **complete**. Seif remains responsible for the live dashboard URL and his personal commit/PR/walkthrough evidence; this backend contribution document does not claim his implementation.
+The Wokwi project also compiled and ran successfully.
 
-## Personal walkthrough
+## Personal Walkthrough
 
-The completed [annotated screenshot walkthrough](docs/walkthrough/README.md) is the submitted alternative to a 3–5 minute recording. It demonstrates the firmware contract, production ingestion and persistence evidence, generated alerts, deployment health, passing CI, and the handoff to Seif's dashboard contract.
+The completed annotated screenshot walkthrough is submitted as the alternative to a 3–5 minute recording:
 
-The complete hand-in is indexed in [SUBMISSION.md](SUBMISSION.md).
+https://github.com/abijith-123/iot-device-backend-capstone/tree/main/docs/walkthrough
 
-## Honest collaboration statement
+It shows the original deployment failure, repository evidence, firmware, running Wokwi simulation, production verification PR, ready Vercel deployment, health result, and successful GitHub Actions test.
 
-The firmware, backend ingestion path, data model, API implementation, alert rules, backend tests, and Vercel deployment materials in this repository are my contribution. Seif completed the dashboard, analytics UI, frontend authentication/integration, and presentation of the data returned by this API, according to the team's final declaration. We collaborate at the boundary: we agree on field names, authentication headers, filtering behavior, alert shape, and deployed URLs; we also test the final device-to-dashboard chain together. Any debugging advice or integration adjustments across that boundary are shared help, but I do not claim Seif's frontend implementation and he should not claim my firmware or backend engine.
+## Honest Collaboration Statement
+
+The firmware, backend ingestion path, validation, database structure, secured API, alert rules, backend tests, deployment configuration, and related documentation are genuinely my work. Integration required agreement on common JSON fields, authentication headers, filtering options, alert response fields, and deployed endpoint addresses.
+
+I received and provided help while checking the connection between project layers, but I only claim the device and backend implementation supported by my branch, commits, pull requests, source code, deployment evidence, and walkthrough.

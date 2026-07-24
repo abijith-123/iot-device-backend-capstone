@@ -4,6 +4,12 @@
 **Repository:** https://github.com/abijith-123/iot-device-backend-capstone  
 **Submission status:** Ready for assessment
 
+## Final Internship Submission
+
+- [Final internship reflection and project handover](FINAL_INTERNSHIP_REFLECTION.md) — complete 600–900 word reflection with direct evidence links.
+- [Individual contribution record](CONTRIBUTION.md) — ownership boundary, branch/PR evidence, key commits, and production verification.
+- [Annotated screenshot walkthrough](docs/walkthrough/README.md) — completed personal walkthrough evidence.
+
 ## Live Platform
 
 | Deliverable | Final Link | Verification |
@@ -20,7 +26,7 @@
 - [CAPSTONE.md](CAPSTONE.md) — learning note about project completion, architecture communication, and professional accountability.
 - [ARCHITECTURE.md](ARCHITECTURE.md) — backend components, data model, security, reliability, and deployment boundary.
 - [PROTOCOL.md](PROTOCOL.md) — MQTT payload, secured endpoints, authentication, errors, and alert contract.
-- [CONTRIBUTION.md](CONTRIBUTION.md) — personal ownership, branch and PR links, six key commits, production result, and honest collaboration statement.
+- [CONTRIBUTION.md](CONTRIBUTION.md) — personal ownership, permanent main/PR links, six key commits, production result, and honest collaboration statement.
 - [Annotated screenshot walkthrough](docs/walkthrough/README.md) — completed personal walkthrough evidence.
 
 ## Verified End-to-End Backend Result

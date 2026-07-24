@@ -47,7 +47,7 @@ I adapted the backend for Vercel, connected Neon PostgreSQL, corrected dependenc
 ## Evidence
 
 - Repository: https://github.com/abijith-123/iot-device-backend-capstone
-- Main branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/agent/device-backend-capstone
+- Final main branch: https://github.com/abijith-123/iot-device-backend-capstone/tree/main
 - Main implementation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/1
 - Vercel adaptation PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/2
 - Dependency fix PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/3
@@ -56,6 +56,7 @@ I adapted the backend for Vercel, connected Neon PostgreSQL, corrected dependenc
 - Neon verification PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/6
 - Simulator and walkthrough PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/8
 - Backend CI evidence PR: https://github.com/abijith-123/iot-device-backend-capstone/pull/9
+- Final internship reflection: https://github.com/abijith-123/iot-device-backend-capstone/blob/main/FINAL_INTERNSHIP_REFLECTION.md
 - Live health endpoint: https://iot-device-backend-capstone.vercel.app/health
 - Live API docs: https://iot-device-backend-capstone.vercel.app/docs
 - Live Wokwi simulation: https://wokwi.com/projects/470194701675629569
@@ -89,4 +90,4 @@ It shows the original deployment failure, repository evidence, firmware, running
 
 The firmware, backend ingestion path, validation, database structure, secured API, alert rules, backend tests, deployment configuration, and related documentation are genuinely my work. Integration required agreement on common JSON fields, authentication headers, filtering options, alert response fields, and deployed endpoint addresses.
 
-I received and provided help while checking the connection between project layers, but I only claim the device and backend implementation supported by my branch, commits, pull requests, source code, deployment evidence, and walkthrough.
+I received and provided help while checking the connection between project layers, but I only claim the device and backend implementation supported by my commits, merged pull requests, source code, deployment evidence, and walkthrough.
